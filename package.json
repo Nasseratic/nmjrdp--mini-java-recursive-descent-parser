@@ -1,0 +1,9 @@
+{
+  "name": "nmjrdp--mini-java-recursive-descent-parser",
+  "version": "0.1.0",
+  "description": "Simple mini java parser",
+  "main": "index.js",
+  "repository": "https://github.com/Nasseratic/nmjrdp--mini-java-recursive-descent-parser.git",
+  "author": "Mohamed Nasser <mhmeeaad@gmail.com>",
+  "license": "MIT"
+}
