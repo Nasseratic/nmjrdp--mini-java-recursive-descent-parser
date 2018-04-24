@@ -64,11 +64,10 @@ module.exports = path =>
 
       allTokens.sort((a, b) => a.index - b.index);
       
-      resolve(allTokens);
-      
-      rw.saveFile(
-        "RESULTS/" + path.split("/")[1],
-        allTokens.map(e => "< " + e.type + " > : -" + e.token + "-").join("\n")
-      );
+      resolve(allTokens);      
+      // rw.saveFile(
+      //   "RESULTS/" + path.split("/")[1],
+      //   allTokens.map(e => "< " + e.type + " > : -" + e.token + "-").join("\n")
+      // );
     });
   });
