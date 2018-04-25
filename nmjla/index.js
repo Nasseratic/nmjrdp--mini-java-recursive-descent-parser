@@ -46,6 +46,7 @@ module.exports = path =>
             type: e.name,
             token: match.toString()
           });
+          str = str.replace(match[0], " ");
         }
       });
 
