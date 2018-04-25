@@ -38,11 +38,11 @@ class MainClass {
       this.ids.push(this.tokens[11]);
       this.tokens = this.tokens.slice(first.length,this.tokens.length);
       new Statement(this.tokens,this.node);
-      // if(this.tokens.map(i=>i.type).slice(0,2).join(',')=="RIGHT_CURLY_B,RIGHT_CURLY_B"){
-      //   this.tokens = this.tokens.slice(2,this.tokens.length);
-      //   return true;
-      // } 
-      return true;
+      if(this.tokens.map(i=>i.type).slice(0,2).join(',')=="RIGHT_CURLY_B,RIGHT_CURLY_B"){
+        this.tokens = this.tokens.slice(2,this.tokens.length);
+        return true;
+      } 
+      // return true;
     } else return false;
 
   }

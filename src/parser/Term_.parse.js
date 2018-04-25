@@ -1,6 +1,6 @@
 const Node = require("../TreeModel");
-const Expression = require("./Expression.parse");
-class Statement {
+
+class Term_ {
   constructor(tokens,parent){
     this.tokens = tokens;
     this.parent = parent;
@@ -16,7 +16,6 @@ class Statement {
   }
   parse(){
     if(this.tokens[0].type === "SYSTEM.OUT.PRINTLN" && this.tokens[1].type==="LEFT_ROUND_B"){
-      console.log(this.tokens);
       
       return true;
     }else if( false ){
@@ -29,4 +28,4 @@ class Statement {
 function print(){
   console.log("\t\tSystem.out.print(\"HAHA\")");
 }
-module.exports = Statement; 
+module.exports = Term_; 
