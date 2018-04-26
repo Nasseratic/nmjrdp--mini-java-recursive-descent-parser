@@ -1,17 +1,14 @@
 const Parser = require("../Parser");
-const Term = require("./Term.parse");
 
-class Expression_ extends Parser {
+class Factor extends Parser{
   constructor(lvl,tokens,parent) {
-    super("Expression`",lvl,tokens,parent);
+    super("Factor",lvl,tokens,parent);
     this.parseing();
   }
   parse() {
-    if (symbols().indexOf(this.tokens[0].token) != -1) {
-      new Term([0,this.tokens, this.node]);
-      new Expression_([0,this.tokens, this.node]);
+    if (true) {
       return true;
-    } else {
+    } else if (false) {
       return true;
     }
   }
@@ -20,7 +17,7 @@ class Expression_ extends Parser {
 function print() {
   console.log('\t\tSystem.out.print("HAHA")');
 }
-module.exports = Expression_;
+module.exports = Factor;
 
 function symbols() {
   return ["&&", "||", "==", "!=", ">", "<", "<=", ">=", "+", "-", "*", "/"];
