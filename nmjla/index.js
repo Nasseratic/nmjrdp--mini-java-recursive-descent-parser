@@ -30,6 +30,9 @@ module.exports = path =>
       // collect reserved words
       reservedWords.all.forEach(e => {
         while ((match = e.reg.exec(str))) {
+          if(match[1].toString()){
+            match.index++;
+          }
           allTokens.push({
             index: match.index,
             type: e.name,
