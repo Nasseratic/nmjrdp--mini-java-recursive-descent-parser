@@ -12,11 +12,11 @@ class Factor extends Parser{
       return true;
     }
   }
+  print() {
+    this.log(['System.out.print("HAHA")']);
+  }
 }
 
-function print() {
-  console.log('\t\tSystem.out.print("HAHA")');
-}
 module.exports = Factor;
 
 function symbols() {

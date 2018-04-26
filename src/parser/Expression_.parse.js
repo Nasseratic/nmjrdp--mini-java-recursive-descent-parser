@@ -15,10 +15,9 @@ class Expression_ extends Parser {
       return true;
     }
   }
-}
-
-function print() {
-  console.log('\t\tSystem.out.print("HAHA")');
+  print() {
+   this.log(['System.out.print("HAHA")']);
+  }
 }
 module.exports = Expression_;
 

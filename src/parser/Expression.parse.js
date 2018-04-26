@@ -12,9 +12,9 @@ class Expression extends Parser {
       new Expression_(0,this.tokens, this.node);
       return true;
   }
+  print() {
+    this.log(['System.out.print("HAHA")']);
+  }
 }
 
-function print() {
-  console.log('\t\tSystem.out.print("HAHA")');
-}
 module.exports = Expression;
