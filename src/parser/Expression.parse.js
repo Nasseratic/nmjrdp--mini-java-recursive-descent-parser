@@ -1,5 +1,4 @@
 const Parser = require("../Parser");
-const Expression_ = require("./Expression_.parse");
 
 class Expression extends Parser {
   constructor(lvl, tokens, parent) {
@@ -9,9 +8,13 @@ class Expression extends Parser {
     this.parseing();
   }
   parse() {
-    if (this.validateOr(["INTEGRAL_LITERAL","FLOAT_LITERAL","TRUE","FALSE","ID","THIS"])) {
+    if (this.validateOr(["INTEGRAL_LITERAL","FLOAT_LITERAL","TRUE","FALSE","THIS", "ID"])) {
       this.toPrintBefore.push(this.tokens[0].token);
       this.shift();
+      if (this.validateTokens(["DOT", "LENGTH"])) {
+        this.toPrintBefore.push(this.tokens[0].token, this.tokens[1].token);
+        this.shift();this.shift();
+      }
       new Expression_(this.level, this.tokens, this.node);
       return true;
     } else if (this.validateTokens(["NOT"])) {
@@ -75,11 +78,11 @@ class Expression extends Parser {
           }
         }
       }
+    
+    
+    } else {
+      return true;
     }
-    //new Term(0,this.tokens, this.node);
-    //new Expression_(0,this.tokens, this.node);
-    //return true;
-    return false;
   }
   print() {
     this.logInline(this.toPrintBefore);
@@ -91,3 +94,4 @@ class Expression extends Parser {
 module.exports = Expression;
 
 const MultiExpression = require("./MultiExpression");
+const Expression_ = require("./Expression_.parse");

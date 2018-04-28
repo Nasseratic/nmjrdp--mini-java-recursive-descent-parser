@@ -1,5 +1,4 @@
 const Parser = require("../Parser");
-const Expression = require("./Expression_.parse");
 
 class Expression_ extends Parser {
   constructor(lvl, tokens, parent) {
@@ -9,31 +8,30 @@ class Expression_ extends Parser {
     this.parseing();
   }
   parse() {
-    
     if (symbols().indexOf(this.tokens[0].token) != -1) {
       //( "&&" | "||" | "==" | "!=" | ">" | "<" | "<=" | ">="| "+" | "-" | "*" | "/" ) Expression Expression_
-      this.toPrintBefore.push(this.tokens[0].type);
+
+      this.toPrintBefore.push(this.tokens[0].token);
+      this.shift();
+      if (this.validateTokens(["EQUAL"])) {
+        this.toPrintBefore.push(this.tokens[0].token);
         this.shift();
-        new Expression(this.level, this.tokens, this.node);
-        new Expression_(this.level, this.tokens, this.node);
-        return true;
+      }
+      new Expression(this.level, this.tokens, this.node);
+      new Expression_(this.level, this.tokens, this.node);
+      return true;
     } else if (this.validateTokens(["LEFT_SQUARE_B"])) {
       //  "[" Expression "]" Expression_
-      this.toPrintBefore.push(this.tokens[0].type);
+      this.toPrintBefore.push(this.tokens[0].toeken);
       this.shift();
       new Expression(this.level, this.tokens, this.node);
       if (this.validateTokens(["RIGHT_SQUARE_B"])) {
-        this.toPrintAfter.push(this.tokens[0].type);
+        this.toPrintAfter.push(this.tokens[0].token);
         this.shift();
         new Expression_(this.level, this.tokens, this.node);
         return true;
       }
-    } else if (this.validateTokens(["DOT", "LENGTH"])) {
-      // "." "length" Expression_
-      this.toPrintBefore.push(this.tokens[0].type + this.tokens[1].type);
-      this.shift();
-      this.shift();
-      new Expression_(this.level, this.tokens, this.node);
+      return false;
     } else if (this.validateTokens(["DOT", "ID", "LEFT_ROUND_B"])) {
       this.toPrintBefore.push("." + this.tokens[1].token + "(");
       // "." Identifier "(" (Expression ( "," Expression)*)? ")" Expression_
@@ -56,6 +54,8 @@ class Expression_ extends Parser {
         }
       }
       return false;
+    } else {
+      return true;
     }
   }
   print() {
@@ -67,7 +67,8 @@ class Expression_ extends Parser {
 module.exports = Expression_;
 
 function symbols() {
-  return ["&&", "||", "==", "!=", ">", "<", "<=", ">=", "+", "-", "*", "/"];
+  return ["&&", "||", "==", "!=", ">", "<", "<=", ">=", "+", "-", "*", "/", "="];
 }
 
 const MultiExpression = require("./MultiExpression");
+const Expression = require("./Expression.parse");
