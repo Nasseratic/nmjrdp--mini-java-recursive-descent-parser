@@ -1,5 +1,4 @@
 const Parser = require("../Parser");
-const Expression_ = require("./Expression_.parse");
 
 class Expression extends Parser {
   constructor(lvl, tokens, parent) {
@@ -95,3 +94,4 @@ class Expression extends Parser {
 module.exports = Expression;
 
 const MultiExpression = require("./MultiExpression");
+const Expression_ = require("./Expression_.parse");

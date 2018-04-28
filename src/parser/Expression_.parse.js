@@ -8,21 +8,25 @@ class Expression_ extends Parser {
     this.parseing();
   }
   parse() {
-    
     if (symbols().indexOf(this.tokens[0].token) != -1) {
       //( "&&" | "||" | "==" | "!=" | ">" | "<" | "<=" | ">="| "+" | "-" | "*" | "/" ) Expression Expression_
-      this.toPrintBefore.push(this.tokens[0].type);
+
+      this.toPrintBefore.push(this.tokens[0].token);
+      this.shift();
+      if (this.validateTokens(["EQUAL"])) {
+        this.toPrintBefore.push(this.tokens[0].token);
         this.shift();
-        new Expression(this.level, this.tokens, this.node);
-        new Expression_(this.level, this.tokens, this.node);
-        return true;
+      }
+      new Expression(this.level, this.tokens, this.node);
+      new Expression_(this.level, this.tokens, this.node);
+      return true;
     } else if (this.validateTokens(["LEFT_SQUARE_B"])) {
       //  "[" Expression "]" Expression_
-      this.toPrintBefore.push(this.tokens[0].type);
+      this.toPrintBefore.push(this.tokens[0].toeken);
       this.shift();
       new Expression(this.level, this.tokens, this.node);
       if (this.validateTokens(["RIGHT_SQUARE_B"])) {
-        this.toPrintAfter.push(this.tokens[0].type);
+        this.toPrintAfter.push(this.tokens[0].token);
         this.shift();
         new Expression_(this.level, this.tokens, this.node);
         return true;
@@ -63,7 +67,7 @@ class Expression_ extends Parser {
 module.exports = Expression_;
 
 function symbols() {
-  return ["&&", "||", "==", "!=", ">", "<", "<=", ">=", "+", "-", "*", "/"];
+  return ["&&", "||", "==", "!=", ">", "<", "<=", ">=", "+", "-", "*", "/", "="];
 }
 
 const MultiExpression = require("./MultiExpression");
