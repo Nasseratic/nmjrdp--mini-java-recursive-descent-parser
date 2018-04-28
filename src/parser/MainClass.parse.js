@@ -33,7 +33,7 @@ class MainClass extends Parser {
         this.cleanTo(2);
         return true;
       }
-      return true;
+      return false;
     } else return false;
   }
 
@@ -41,14 +41,12 @@ class MainClass extends Parser {
     this.log([
       `\nclass ${
         this.ids[0].token
-      } {\n\n\tpublic static void main ( String [] ${this.ids[1].token} ) {\n\t`
+      } {\n\n\tpublic static void main ( String [] ${this.ids[1].token} ) {`
     ]);
-    this.node.children.forEach(child => {
-      if (child.model && child.model.print) {
-        child.model.print();
-      }
-    });
+    console.log();
+    this.printChildren();
     this.log(["\n\t}\n}"]);
+    console.log();
   }
 }
 
