@@ -8,22 +8,7 @@ class MainClass extends Parser {
     this.parseing();
   }
   parse() {
-    let first = [
-      "CLASS",
-      "ID",
-      "LEFT_CURLY_B",
-      "PUBLIC",
-      "STATIC",
-      "VOID",
-      "MAIN",
-      "LEFT_ROUND_B",
-      "STRING",
-      "LEFT_SQUARE_B",
-      "RIGHT_SQUARE_B",
-      "ID",
-      "RIGHT_ROUND_B",
-      "LEFT_CURLY_B"
-    ];
+    let first = ["CLASS", "ID", "LEFT_CURLY_B", "PUBLIC", "STATIC", "VOID", "MAIN", "LEFT_ROUND_B", "STRING", "LEFT_SQUARE_B", "RIGHT_SQUARE_B", "ID", "RIGHT_ROUND_B", "LEFT_CURLY_B"];
     if (this.validateTokens(first)) {
       this.ids.push(this.tokens[1]);
       this.ids.push(this.tokens[11]);
